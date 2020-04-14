@@ -14,6 +14,13 @@ TEST_CASE("Test creation of small input"){
 	CHECK(T.relation("Rachel") == "mother");
 	CHECK(T.find("father") == "Yaakov");
 	CHECK(T.find("mother") == "Rachel");
+	Tree T("Beni");
+	T.addFather("Beni", "Jon") 
+	 .addMother("Beni", "Bella");
+	CHECK(T.relation("Jon") == "father");
+	CHECK(T.relation("Bella") == "mother");
+	CHECK(T.find("father") == "Jon");
+	CHECK(T.find("mother") == "Bella");
 }
 
 
