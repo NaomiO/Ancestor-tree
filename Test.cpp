@@ -7,20 +7,20 @@ using namespace std;
 
 
 TEST_CASE("Test creation of small input"){
-	Tree T("Yosef");
-	T.addFather("Yosef", "Yaakov") 
+	Tree T1("Yosef");
+	T1.addFather("Yosef", "Yaakov") 
 	 .addMother("Yosef", "Rachel");
-	CHECK(T.relation("Yaakov") == "father");
-	CHECK(T.relation("Rachel") == "mother");
-	CHECK(T.find("father") == "Yaakov");
-	CHECK(T.find("mother") == "Rachel");
-	Tree T("Beni");
-	T.addFather("Beni", "Jon") 
+	CHECK(T1.relation("Yaakov") == "father");
+	CHECK(T1.relation("Rachel") == "mother");
+	CHECK(T1.find("father") == "Yaakov");
+	CHECK(T1.find("mother") == "Rachel");
+	Tree T2("Beni");
+	T2.addFather("Beni", "Jon") 
 	 .addMother("Beni", "Bella");
-	CHECK(T.relation("Jon") == "father");
-	CHECK(T.relation("Bella") == "mother");
-	CHECK(T.find("father") == "Jon");
-	CHECK(T.find("mother") == "Bella");
+	CHECK(T2.relation("Jon") == "father");
+	CHECK(T2.relation("Bella") == "mother");
+	CHECK(T2.find("father") == "Jon");
+	CHECK(T2.find("mother") == "Bella");
 }
 
 
