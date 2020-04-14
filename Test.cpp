@@ -91,7 +91,7 @@ TEST_CASE("Test addition after removal"){
 	T.remove("Isaac");
 	T.remove("Rachel");
 	T.remove("Yaakov");
-	 .addFather("Yosef", "Yaakov") 
+	T.addFather("Yosef", "Yaakov") 
 	 .addMother("Yosef", "Rachel") 
 	 .addFather("Yaakov", "Isaac")
 	 .addMother("Yaakov", "Rivka")
@@ -114,8 +114,8 @@ TEST_CASE("Test root removal"){
 	 .addFather("Yaakov", "Isaac")
 	 .addMother("Yaakov", "Rivka")
 	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah")
-	 .remove("Yosef");
+	 .addFather("Avraham", "Terah");
+	T.remove("Yosef");
 	CHECK(T.relation("Yaakov") == "unrelated");
 	CHECK(T.relation("Rachel") == "unrelated");
 	CHECK(T.relation("Rivka") == "unrelated");
