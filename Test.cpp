@@ -15,9 +15,7 @@ TEST_CASE("Test creation of small input"){
 	CHECK(T.find("father") == "Yaakov");
 	CHECK(T.find("mother") == "Rachel");
 }
-TEST_CASE("Test creation bad input"){
-	CHECK_THROWS_AS(Tree T(""), const exception&);
-}
+
 
 TEST_CASE("Test relation not found"){
     Tree T ("Yosef"); 
