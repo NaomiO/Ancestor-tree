@@ -286,4 +286,4 @@ TEST_CASE("Test relation and find being inverse"){
 	CHECK(T.find(T.relation("Avraham")) == "Avraham");
 	CHECK(T.find(T.relation("Terah")) == "Terah");
 }
-/*
+*/
