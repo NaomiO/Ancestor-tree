@@ -4,7 +4,7 @@
 using namespace family;
 using namespace std;
 
-
+/*
 TEST_CASE("Test creation of small input"){
 	Tree T("Yosef");
 	T.addFather("Yosef", "Yaakov") 
@@ -286,3 +286,4 @@ TEST_CASE("Test relation and find being inverse"){
 	CHECK(T.find(T.relation("Avraham")) == "Avraham");
 	CHECK(T.find(T.relation("Terah")) == "Terah");
 }
+/*
