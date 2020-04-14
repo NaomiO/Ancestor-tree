@@ -63,13 +63,13 @@ TEST_CASE("Test ordered removal"){
 	 .addFather("Yaakov", "Isaac")
 	 .addMother("Yaakov", "Rivka")
 	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah")
-	 .remove("Terah")
-	 .remove("Avraham")
-	 .remove("Rivka")
-	 .remove("Isaac")
-	 .remove("Rachel")
-	 .remove("Yaakov");
+	 .addFather("Avraham", "Terah");
+	T.remove("Terah");
+	T.remove("Avraham");
+	T.remove("Rivka");
+	T.remove("Isaac");
+	T.remove("Rachel");
+	T.remove("Yaakov");
 	CHECK_THROWS(T.find("Terah")); 
 	CHECK_THROWS(T.find("Avraham")); 
 	CHECK_THROWS(T.find("Rivka")); 
@@ -84,13 +84,13 @@ TEST_CASE("Test addition after removal"){
 	 .addFather("Yaakov", "Isaac")
 	 .addMother("Yaakov", "Rivka")
 	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah")
-	 .remove("Terah")
-	 .remove("Avraham")
-	 .remove("Rivka")
-	 .remove("Isaac")
-	 .remove("Rachel")
-	 .remove("Yaakov")
+	 .addFather("Avraham", "Terah");
+	T.remove("Terah");
+	T.remove("Avraham");
+	T.remove("Rivka");
+	T.remove("Isaac");
+	T.remove("Rachel");
+	T.remove("Yaakov");
 	 .addFather("Yosef", "Yaakov") 
 	 .addMother("Yosef", "Rachel") 
 	 .addFather("Yaakov", "Isaac")
@@ -216,8 +216,8 @@ TEST_CASE("Test not found"){
 	 .addMother("Yaakov", "Rivka");
 	CHECK_THROWS_AS(T.find("great-grandfather"), const exception&);
 	CHECK_THROWS_AS(T.find("great-great-grandfather"), const exception&);
-	T.remove("Rachel")
-	 .remove("Yaakov");
+	T.remove("Rachel");
+	T.remove("Yaakov");
 	CHECK_THROWS_AS(T.find("mother"), const exception&);
 	CHECK_THROWS_AS(T.find("father"), const exception&);
 }
