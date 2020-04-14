@@ -70,12 +70,12 @@ TEST_CASE("Test ordered removal"){
 	 .remove("Isaac")
 	 .remove("Rachel")
 	 .remove("Yaakov");
-	CHECK(T.relation("Yaakov") == "unrelated");
-	CHECK(T.relation("Rachel") == "unrelated");
-	CHECK(T.relation("Rivka") == "unrelated");
-	CHECK(T.relation("Avraham") == "unrelated");
-	CHECK(T.relation("Terah") == "unrelated");
-	CHECK(T.relation("Yosef") == "me"); 
+	CHECK_THROWS(T.find("Terah")); 
+	CHECK_THROWS(T.find("Avraham")); 
+	CHECK_THROWS(T.find("Rivka")); 
+	CHECK_THROWS(T.find("Rachel")); 
+	CHECK_THROWS(T.find("Isaac")); 
+	CHECK_THROWS(T.find("Yaakov")); 
 }
 TEST_CASE("Test addition after removal"){
     Tree T ("Yosef"); 
