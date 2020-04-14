@@ -107,22 +107,6 @@ TEST_CASE("Test addition after removal"){
 }
 
 
-TEST_CASE("Test root removal"){
-	Tree T ("Yosef"); 
-	T.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel") 
-	 .addFather("Yaakov", "Isaac")
-	 .addMother("Yaakov", "Rivka")
-	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah");
-	T.remove("Yosef");
-	CHECK(T.relation("Yaakov") == "unrelated");
-	CHECK(T.relation("Rachel") == "unrelated");
-	CHECK(T.relation("Rivka") == "unrelated");
-	CHECK(T.relation("Avraham") == "unrelated");
-	CHECK(T.relation("Terah") == "unrelated");
-	CHECK(T.relation("Yosef") == "unrelated"); 
-}
 
 TEST_CASE("Test unordered removal"){
     Tree T ("Yosef"); 
@@ -237,7 +221,7 @@ TEST_CASE("Test find bad input"){
 	CHECK_THROWS_AS(T.find("mother-great-great-grandfather"), const exception&);
 	CHECK_THROWS_AS(T.find("I"), const exception&); 
 }
-TEST_CASE("Test nmaes with spaces"){
+TEST_CASE("Test names with spaces"){
     Tree T ("Yosef  "); 
 	T.addFather("Yosef", "Yaak ov") 
 	 .addMother("Yosef", " Rachel") 
@@ -253,7 +237,7 @@ TEST_CASE("Test nmaes with spaces"){
 	CHECK(T.relation("Ter ah ") == "great-great-grandfather");
 	CHECK(T.relation("Yosef  ") == "me"); 
 }
-TEST_CASE("Test nmaes with non regular characters"){
+TEST_CASE("Test names with non regular characters"){
     Tree T ("Yosef2"); 
 	T.addFather("Yosef2", "Yaak@ov") 
 	 .addMother("Yosef2", "Rach3l") 
