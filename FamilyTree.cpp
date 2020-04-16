@@ -13,20 +13,7 @@ Tree :: Tree(string name)
 	p->type="me";
     root=p;
 }
-Tree :: ~Tree()
-{
-	 this->root = tree_destructor(this->root);
 
-}
-
-node* tree_destructor(node* leaf){
-                if(leaf == nullptr)
-                    return nullptr;
-                tree_destructor(leaf->father);
-                tree_destructor(leaf->mother);
-                delete leaf;
-                return nullptr;
-            }
 ///////////////////////////////////////////////////////public methods ///////////////////////////////////////////////////////////////////////////
 Tree& Tree :: addFather(string son, string father)
 {	
