@@ -21,7 +21,7 @@ Tree :: ~Tree()
 Tree& Tree :: addFather(string son, string father)
 {	
 	node *temp=findNode(root,son);
-	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text");
+	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text111111");
 	node *p=new node;
     p->name=father;
 	p->son=temp;
@@ -44,7 +44,7 @@ return *this;
 Tree& Tree :: addMother(string son, string mother)
 {
 	node *temp=findNode(root,son);
-	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text11");
+	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text");
 	node *p=new node;
     p->name=mother;
 	p->son=temp;
