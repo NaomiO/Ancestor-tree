@@ -194,6 +194,7 @@ TEST_CASE("Test addition of leaves after removing"){
 	 .addFather("Benjamin", "Henry")
 	 .addMother("Benjamin", "Jacqueline")
 	 .addFather("Henry", "Jacques")
+	 .addMother("Henry", "Lucille")
 	 .addFather("Jacques", "Lucien");
 
 	CHECK(T.relation("Benjamin") == "father");
@@ -235,8 +236,8 @@ TEST_CASE("Test unordered removal"){
 	CHECK(T1.relation("Agnes") == "mother");
 	CHECK(T1.relation("Roy") == "unrelated");
 	CHECK(T1.relation("Marcel") == "unrelated");
-	CHECK(T1.relation("Samueel") == "unrelated");
-	CHECK(T1.relation("Naomi") == "me");
+	CHECK(T1.relation("Samuel") == "unrelated");
+	CHECK(T1.relation("Shimon") == "me");
 }
 
 
@@ -292,7 +293,7 @@ TEST_CASE("Test find name in current tree"){
 	CHECK(T.find("great-grandfather") == "Jacques");
 	CHECK(T.find("great-grandmother") == "Lucille");
 	CHECK(T.find("great-great-grandfather") == "Lucien");
-	CHECK(T.find("great-great-grandfather") == "Marguerite");
+	CHECK(T.find("great-great-grandmother") == "Marguerite");
 	CHECK(T.find("me") == "Naomi"); 
 }
 
