@@ -16,7 +16,9 @@ class Tree
 	node *root;
 public:
 	Tree(string root);
-	~Tree();//delete the tree
+	~Tree() {
+                this->root = tree_destructor(this->root);
+            }
 	Tree& addFather(string son, string father);
 	Tree& addMother(string son, string mother);
 	void display();
@@ -27,5 +29,13 @@ private:
 	node *findNode(node *n,string name);
 	node *findNodeByType(node *n,string type);
 	void print2DUtil(node *root, int space);
+	node* tree_destructor(node* leaf){
+                if(leaf == nullptr)
+                    return nullptr;
+                tree_destructor(leaf->father);
+                tree_destructor(leaf->mother);
+                delete leaf;
+                return nullptr;
+            }
 };
 }
