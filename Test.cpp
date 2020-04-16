@@ -73,7 +73,6 @@ TEST_CASE("Test simple addition"){
 	CHECK(T.relation("Rivka") == "grandmother");
 	CHECK(T.relation("Avraham") == "great-grandfather");
 	CHECK(T.relation("Terah") == "great-great-grandfather");
-	//CHECK(T.relation("xyz") == "unrelated");
 	CHECK(T.relation("Yosef") == "me"); 
 }
 

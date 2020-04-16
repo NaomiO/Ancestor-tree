@@ -53,7 +53,7 @@ Tree& Tree :: addMother(string son, string mother)
 	if(temp->type =="me")
 		p->type="mother";
 	else if(temp->type == "mother" || temp->type == "father" )
-		p->type="grandfather";
+		p->type="grandmother";
 		else {
 		p->type="great-"+temp->type;
 	    int l=p->type.length();
