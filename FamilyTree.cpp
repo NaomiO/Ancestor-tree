@@ -21,7 +21,7 @@ Tree :: ~Tree()
 Tree& Tree :: addFather(string son, string father)
 {	
 	node *temp=findNode(root,son);
-	if(temp==nullptr) throw std::out_of_range("The name not exists in the text");
+	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text");
 	node *p=new node;
     p->name=father;
 	p->son=temp;
@@ -44,7 +44,7 @@ return *this;
 Tree& Tree :: addMother(string son, string mother)
 {
 	node *temp=findNode(root,son);
-	if(temp==nullptr) throw std::out_of_range("The name not exists in the text");
+	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text");
 	node *p=new node;
     p->name=mother;
 	p->son=temp;
@@ -84,7 +84,7 @@ string Tree :: find(string type)
 void Tree :: remove(string name)
 {
 	node *temp=findNode(root,name);
-	if(temp==nullptr) throw std::out_of_range("The name not exists in the text");
+	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text");
 	node *p=temp->son;
 	if(p->mother == temp){
 		p->mother=nullptr;
@@ -119,7 +119,7 @@ void Tree :: print2DUtil(node *root, int space)
 {  
     // Base case  
     if (root == nullptr)  
-        return;  
+        return ;  
   
     // Increase distance between levels  
     space += COUNT;  

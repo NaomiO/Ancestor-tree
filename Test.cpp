@@ -32,14 +32,30 @@ TEST_CASE("Test relation not found"){
 	 .addMother("Yaakov", "Rivka")
 	 .addFather("Isaac", "Avraham")
 	 .addFather("Avraham", "Terah");
+	CHECK(T.relation("ab") == "unrelated");
+	CHECK(T.relation("ghh") == "unrelated");
+	CHECK(T.relation("klll") == "unrelated");
+	CHECK(T.relation("tyyy") == "unrelated");
+	CHECK(T.relation("ettt") == "unrelated");
+	CHECK(T.relation("poooo") == "unrelated");
+	CHECK(T.relation("gtyy") == "unrelated");
+	CHECK(T.relation("tttt") == "unrelated");
+	CHECK(T.relation("eppp") == "unrelated");
+	CHECK(T.relation("fggg") == "unrelated");
+	CHECK(T.relation("rtyy") == "unrelated");
+	CHECK(T.relation("qppp") == "unrelated");
+	CHECK(T.relation("ceded") == "unrelated");
+	CHECK(T.relation("qqq") == "unrelated");
+	CHECK(T.relation("avrasssham") == "unrelated");
+	CHECK(T.relation("Te rah") == "unrelated");
 	CHECK(T.relation("Noah") == "unrelated");
 	CHECK(T.relation("David") == "unrelated");
 	CHECK(T.relation("Shlomo") == "unrelated");
 	CHECK(T.relation("Yonah") == "unrelated");
 	CHECK(T.relation("Yosef123") == "unrelated");
 	CHECK(T.relation("1issaac") == "unrelated");
-	CHECK(T.relation("avraham") == "unrelated");
-	CHECK(T.relation("Te rah") == "unrelated");
+	CHECK(T.relation("avraaviham") == "unrelated");
+	CHECK(T.relation("Teeah") == "unrelated");
 } 
 
 TEST_CASE("Test simple addition"){
