@@ -6,6 +6,25 @@ using namespace family;
 using namespace std;
 
 
+
+TEST_CASE("Test find bad input"){
+    Tree T ("Naomi"); 
+	T.addFather("Naomi", "Benjamin") 
+	 .addMother("Naomi", "Corinne") 
+	 .addFather("Benjamin", "Henry")
+	 .addMother("Benjamin", "Jacqueline");
+	CHECK_THROWS_AS(T.find("uncle"), const exception&);
+	CHECK_THROWS_AS(T.find("aunt"), const exception&);
+	CHECK_THROWS_AS(T.find("nephew"), const exception&);
+	CHECK_THROWS_AS(T.find("niece"), const exception&);
+	CHECK_THROWS_AS(T.find("cousin"), const exception&);
+	CHECK_THROWS_AS(T.find("daughter"), const exception&);
+	CHECK_THROWS_AS(T.find("son"), const exception&); 
+	CHECK_THROWS_AS(T.find("dog"), const exception&); 
+	CHECK_THROWS_AS(T.find("cat"), const exception&); 
+
+}
+
 TEST_CASE("Test for small trees"){
 	Tree T1("Naomi");
 	T1.addFather("Naomi", "Benjamin") 
@@ -37,6 +56,26 @@ TEST_CASE("Test for small trees"){
 	CHECK(T4.find("mother") == "Gila");
 }
 
+TEST_CASE("Test name not found in current tree"){
+    Tree T ("Naomi"); 
+	T.addFather("Naomi", "Benjamin") 
+	 .addMother("Naomi", "Corinne") 
+	 .addFather("Benjamin", "Henry")
+	 .addMother("Benjamin", "Jacqueline");
+	CHECK_THROWS_AS(T.find("great-grandfather"), const exception&);
+	CHECK_THROWS_AS(T.find("great-great-grandfather"), const exception&);
+	CHECK_THROWS_AS(T.find("great-grandmother"), const exception&);
+	CHECK_THROWS_AS(T.find("great-great-grandmother"), const exception&);
+	T.remove("Corinne");
+	T.remove("Benjamin");
+	T.remove("Henry");
+	T.remove("Jacqueline");
+	CHECK_THROWS_AS(T.find("mother"), const exception&);
+	CHECK_THROWS_AS(T.find("father"), const exception&);
+	CHECK_THROWS_AS(T.find("grandmother"), const exception&);
+	CHECK_THROWS_AS(T.find("grandfather"), const exception&);
+}
+
 
 TEST_CASE("Test relation not found"){
     Tree T ("Naomi"); 
@@ -61,12 +100,12 @@ TEST_CASE("Test relation not found"){
 	CHECK(T.relation("troy") == "unrelated");
 	CHECK(T.relation("evan") == "unrelated");
 	CHECK(T.relation("paris") == "unrelated");
-	CHECK(T.relation("Baajemin") == "unrelated");
-	CHECK(T.relation("Heeenry") == "unrelated");
-	CHECK(T.relation("Juliiiiia") == "unrelated");
-	CHECK(T.relation("Christiiii") == "unrelated");
-	CHECK(T.relation("Ravaka") == "unrelated");
-	CHECK(T.relation("Naooomi") == "unrelated");
+	CHECK(T.relation("ben") == "unrelated");
+	CHECK(T.relation("fanny") == "unrelated");
+	CHECK(T.relation("yolande") == "unrelated");
+	CHECK(T.relation("roger") == "unrelated");
+	CHECK(T.relation("walter") == "unrelated");
+	CHECK(T.relation("quentin") == "unrelated");
 
 
 } 
@@ -96,6 +135,7 @@ TEST_CASE("Test with large family tree"){
 	CHECK(T.relation("Julia") == "great-great-grandmother");
     CHECK(T.relation("Naomi") == "me"); 
 }
+
 
 TEST_CASE("Test tree with leaves removed"){
     Tree T ("Naomi"); 
@@ -141,6 +181,7 @@ TEST_CASE("Test addition of leaves after removing"){
 	 .addFather("Benjamin", "Henry")
 	 .addMother("Benjamin", "Jacqueline")
 	 .addFather("Henry", "Jacques")
+	 .addMother("Henry", "Lucille")
 	 .addFather("Jacques", "Lucien");
 	T.remove("Lucien");
 	T.remove("Jacques");
@@ -154,16 +195,17 @@ TEST_CASE("Test addition of leaves after removing"){
 	 .addMother("Benjamin", "Jacqueline")
 	 .addFather("Henry", "Jacques")
 	 .addFather("Jacques", "Lucien");
+
 	CHECK(T.relation("Benjamin") == "father");
 	CHECK(T.relation("Corinne") == "mother");
 	CHECK(T.relation("Henry") == "grandfather");
 	CHECK(T.relation("Jacqueline") == "grandmother");
 	CHECK(T.relation("Jacques") == "great-grandfather");
+	CHECK(T.relation("Lucille") == "great-grandmother");
 	CHECK(T.relation("Lucien") == "great-great-grandfather");
 	CHECK(T.relation("Naomi") == "me"); 
 }
 
-////////////////////***********************************************************************////////////////////////////
 
 TEST_CASE("Test unordered removal"){
     Tree T ("Naomi"); 
@@ -171,35 +213,51 @@ TEST_CASE("Test unordered removal"){
 	 .addMother("Naomi", "Corinne") 
 	 .addFather("Benjamin", "Henry")
 	 .addMother("Benjamin", "Jacqueline")
-	 .addFather("Henry", "Jacques")
-	 .addFather("Jacques", "Lucien");
+	 .addFather("Henry", "Jacques");
 	 T.remove("Benjamin");
+
 	CHECK(T.relation("Benjamin") == "unrelated");
 	CHECK(T.relation("Corinne") == "mother");
 	CHECK(T.relation("Henry") == "unrelated");
 	CHECK(T.relation("Jacqueline") == "unrelated");
 	CHECK(T.relation("Jacques") == "unrelated");
-	CHECK(T.relation("Lucien") == "unrelated");
 	CHECK(T.relation("Naomi") == "me");
+
+	Tree T1 ("Shimon"); 
+	T1.addFather("Shimon", "Mickael") 
+	 .addMother("Shimon", "Agnes") 
+	 .addFather("Mickael", "Roy")
+	 .addMother("Mickael", "Marcel")
+	 .addFather("Roy", "Samuel");
+	 T1.remove("Mickael");
+
+	CHECK(T1.relation("Mickael") == "unrelated");
+	CHECK(T1.relation("Agnes") == "mother");
+	CHECK(T1.relation("Roy") == "unrelated");
+	CHECK(T1.relation("Marcel") == "unrelated");
+	CHECK(T1.relation("Samueel") == "unrelated");
+	CHECK(T1.relation("Naomi") == "me");
 }
+
 
 
 TEST_CASE("Test unordered removal"){
     Tree T ("Naomi"); 
 	T.addFather("Naomi", "Benjamin") 
 	 .addMother("Naomi", "Corinne") 
-	 .addFather("Corinne", "Patrick")
-	 .addMother("Corinne", "Cynthia")
+	 .addFather("Corinne", "Nissim")
+	 .addMother("Corinne", "Gloria")
 	 .addFather("Benjamin", "Henry")
 	 .addMother("Benjamin", "Jacqueline")
 	 .addFather("Henry", "Jacques")
 	 .addFather("Jacques", "Lucien");
 	T.remove("Benjamin");
+
 	CHECK(T.relation("Benjamin") == "unrelated");
 	CHECK(T.relation("Corinne") == "mother");
 	CHECK(T.relation("Henry") == "unrelated");
-	CHECK(T.relation("Patrick") == "grandfather");
-	CHECK(T.relation("Cynthia") == "grandmother");
+	CHECK(T.relation("Nissim") == "grandfather");
+	CHECK(T.relation("Gloria") == "grandmother");
 	CHECK(T.relation("Jacqueline") == "unrelated");
 	CHECK(T.relation("Jacques") == "unrelated");
 	CHECK(T.relation("Lucien") == "unrelated");
@@ -207,8 +265,8 @@ TEST_CASE("Test unordered removal"){
 	CHECK(T.relation("Benjamin") == "unrelated");
 	CHECK(T.relation("Corinne") == "mother");
 	CHECK(T.relation("Henry") == "unrelated");
-	CHECK(T.relation("Patrick") == "grandfather");
-	CHECK(T.relation("Cynthia") == "grandmother");
+	CHECK(T.relation("Nissim") == "grandfather");
+	CHECK(T.relation("Gloria") == "grandmother");
 	CHECK(T.relation("Jacqueline") == "unrelated");
 	CHECK(T.relation("Jacques") == "unrelated");
 	CHECK(T.relation("Lucien") == "unrelated");
@@ -216,51 +274,30 @@ TEST_CASE("Test unordered removal"){
 }
 
 
-TEST_CASE("Test find"){
+TEST_CASE("Test find name in current tree"){
     Tree T ("Naomi"); 
 	T.addFather("Naomi", "Benjamin") 
 	 .addMother("Naomi", "Corinne") 
 	 .addFather("Benjamin", "Henry")
 	 .addMother("Benjamin", "Jacqueline")
 	 .addFather("Henry", "Jacques")
-	 .addFather("Jacques", "Lucien");
+	 .addMother("Henry", "Lucille")
+	 .addFather("Jacques", "Lucien")
+	 .addMother("Jacques", "Marguerite");
+
 	CHECK(T.find("father") == "Benjamin");
 	CHECK(T.find("mother") == "Corinne");
 	CHECK(T.find("grandfather") == "Henry");
 	CHECK(T.find("grandmother") == "Jacqueline");
 	CHECK(T.find("great-grandfather") == "Jacques");
+	CHECK(T.find("great-grandmother") == "Lucille");
 	CHECK(T.find("great-great-grandfather") == "Lucien");
+	CHECK(T.find("great-great-grandfather") == "Marguerite");
 	CHECK(T.find("me") == "Naomi"); 
 }
-TEST_CASE("Test not found"){
-    Tree T ("Naomi"); 
-	T.addFather("Naomi", "Benjamin") 
-	 .addMother("Naomi", "Corinne") 
-	 .addFather("Benjamin", "Henry")
-	 .addMother("Benjamin", "Jacqueline");
-	CHECK_THROWS_AS(T.find("great-grandfather"), const exception&);
-	CHECK_THROWS_AS(T.find("great-great-grandfather"), const exception&);
-	T.remove("Corinne");
-	T.remove("Benjamin");
-	CHECK_THROWS_AS(T.find("mother"), const exception&);
-	CHECK_THROWS_AS(T.find("father"), const exception&);
-}
-TEST_CASE("Test find bad input"){
-    Tree T ("Naomi"); 
-	T.addFather("Naomi", "Benjamin") 
-	 .addMother("Naomi", "Corinne") 
-	 .addFather("Benjamin", "Henry")
-	 .addMother("Benjamin", "Jacqueline")
-	 .addFather("Henry", "Jacques")
-	 .addFather("Jacques", "Lucien");
-	CHECK_THROWS_AS(T.find("father1"), const exception&);
-	CHECK_THROWS_AS(T.find("mother-2"), const exception&);
-	CHECK_THROWS_AS(T.find("grandfather-great"), const exception&);
-	CHECK_THROWS_AS(T.find("grand mother"), const exception&);
-	CHECK_THROWS_AS(T.find("great grandfather"), const exception&);
-	CHECK_THROWS_AS(T.find("mother-great-great-grandfather"), const exception&);
-	CHECK_THROWS_AS(T.find("I"), const exception&); 
-}
+
+
+
 
 
 TEST_CASE("Test relation and find being inverse"){
