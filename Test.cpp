@@ -74,18 +74,18 @@ TEST_CASE("Test relation not found"){
 TEST_CASE("Test with large family tree"){
     Tree T ("Naomi"); 
 	T.addFather("Naomi", "Benjamin") 
-	 .addMother("Naomi", "Jacqueline") 
+	 .addMother("Naomi", "Corinne") 
 	 .addFather("Benjamin", "Henry")
 	 .addMother("Benjamin", "Jacqueline")
-	 .addFather("Jacqueline", "Nissim")
-	 .addMother("Jacqueline", "Gloria")
+	 .addFather("Corinne", "Nissim")
+	 .addMother("Corinne", "Gloria")
 	 .addFather("Henry", "Christophe")
 	 .addMother("Henry", "Madeleine")
 	 .addFather("Christophe", "Jacques")
 	 .addMother("Christophe", "Julia");
 	 T.display();
 	CHECK(T.relation("Benjamin") == "father");
-	CHECK(T.relation("Jacqueline") == "mother");
+	CHECK(T.relation("Corinne") == "mother");
 	CHECK(T.relation("Henry") == "grandfather");
 	CHECK(T.relation("Jacqueline") == "grandmother");
 	CHECK(T.relation("Nissim") == "grandfather");
