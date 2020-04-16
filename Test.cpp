@@ -6,7 +6,7 @@ using namespace family;
 using namespace std;
 
 
-/*TEST_CASE("Test creation of small input"){
+TEST_CASE("Test creation of small input"){
 	Tree T1("Yosef");
 	T1.addFather("Yosef", "Yaakov") 
 	 .addMother("Yosef", "Rachel");
@@ -154,7 +154,7 @@ TEST_CASE("Test unordered removal"){
 	 .addMother("Yaakov", "Rachel");
 	CHECK(T.relation("Yaakov") == "father");
 	CHECK(T.relation("Rachel") == "mother");
-}*
+}*/
 
 TEST_CASE("Test unordered removal"){
     Tree T ("Yosef"); 
@@ -177,7 +177,7 @@ TEST_CASE("Test unordered removal"){
 	CHECK(T.relation("Terah") == "unrelated");
 	CHECK(T.relation("Yosef") == "me");
 }
-*/
+
 TEST_CASE("Test addition after unordered removal"){
     Tree T ("Yosef"); 
 	T.addFather("Yosef", "Yaakov") 

@@ -84,7 +84,7 @@ string Tree :: find(string type)
 void Tree :: remove(string name)
 {
 	node *temp=findNode(root,name);
-	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text");
+	if(temp==nullptr) throw std::out_of_range("The name does not exist in the text11");
 	node *p=temp->son;
 	if(p->mother == temp){
 		p->mother=nullptr;
