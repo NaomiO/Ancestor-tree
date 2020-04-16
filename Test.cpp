@@ -98,26 +98,42 @@ TEST_CASE("Test big family"){
 }
 
 TEST_CASE("Test ordered removal"){
-    Tree T ("Yosef"); 
-	T.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel") 
-	 .addFather("Yaakov", "Isaac")
-	 .addMother("Yaakov", "Rivka")
-	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah");
-	T.remove("Terah");
-	T.remove("Avraham");
+    Tree T ("Naomi"); 
+	T.addFather("Naomi", "Benjamin") 
+	 .addMother("Naomi", "Rivka") 
+	 .addFather("Benjamin", "Henry")
+	 .addMother("Benjamin", "Jacqueline")
+	 .addFather("Henry", "Christophe")
+	 .addFather("Christophe", "Jacques")
+	 .addFather("Rivka", "Nissim")
+	 .addMother("Rivka", "Gloria")
+	 .addFather("Nissim", "David")
+	 .addFather("David", "Yacov");
+
+	T.remove("Jacques");
+	T.remove("Christophe");
+	T.remove("Jacqueline");
+	T.remove("Henry");
 	T.remove("Rivka");
-	T.remove("Isaac");
-	T.remove("Rachel");
-	T.remove("Yaakov");
-	CHECK_THROWS(T.find("Terah")); 
-	CHECK_THROWS(T.find("Avraham")); 
+	T.remove("Benjamin");
+	T.remove("Yacov");
+	T.remove("David");
+	T.remove("Nissim");
+	T.remove("Gloria");
+	
+	CHECK_THROWS(T.find("Jacques")); 
+	CHECK_THROWS(T.find("Christophe")); 
+	CHECK_THROWS(T.find("Jacqueline")); 
+	CHECK_THROWS(T.find("Yacov")); 
+	CHECK_THROWS(T.find("David")); 
+	CHECK_THROWS(T.find("Nissim")); 
+	CHECK_THROWS(T.find("Gloria")); 
 	CHECK_THROWS(T.find("Rivka")); 
-	CHECK_THROWS(T.find("Rachel")); 
-	CHECK_THROWS(T.find("Isaac")); 
-	CHECK_THROWS(T.find("Yaakov")); 
+	CHECK_THROWS(T.find("Henry")); 
+	CHECK_THROWS(T.find("Benjamin")); 
 }
+
+
 TEST_CASE("Test addition after removal"){
     Tree T ("Yosef"); 
 	T.addFather("Yosef", "Yaakov") 
