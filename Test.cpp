@@ -6,74 +6,95 @@ using namespace family;
 using namespace std;
 
 
-TEST_CASE("Test creation of small input"){
-	Tree T1("Yosef");
-	T1.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel");
-	CHECK(T1.relation("Yaakov") == "father");
-	CHECK(T1.relation("Rachel") == "mother");
-	CHECK(T1.find("father") == "Yaakov");
-	CHECK(T1.find("mother") == "Rachel");
-	Tree T2("Beni");
-	T2.addFather("Beni", "Jon") 
-	 .addMother("Beni", "Bella");
-	CHECK(T2.relation("Jon") == "father");
-	CHECK(T2.relation("Bella") == "mother");
-	CHECK(T2.find("father") == "Jon");
-	CHECK(T2.find("mother") == "Bella");
+TEST_CASE("Test for small trees"){
+	Tree T1("Naomi");
+	T1.addFather("Naomi", "Benjamin") 
+	 .addMother("Naomi", "Rivka");
+	CHECK(T1.relation("Benjamin") == "father");
+	CHECK(T1.relation("Rivka") == "mother");
+	CHECK(T1.find("father") == "Benjamin");
+	CHECK(T1.find("mother") == "Rivka");
+	Tree T2("Shimon");
+	T2.addFather("Shimon", "Mickael") 
+	 .addMother("Shimon", "Agnes");
+	CHECK(T2.relation("Mickael") == "father");
+	CHECK(T2.relation("Agnes") == "mother");
+	CHECK(T2.find("father") == "Mickael");
+	CHECK(T2.find("mother") == "Agnes");
+	Tree T3("Sarah");
+	T3.addFather("Sarah", "Gilles") 
+	 .addMother("Sarah", "Agnes");
+	CHECK(T3.relation("Gilles") == "father");
+	CHECK(T3.relation("Florence") == "mother");
+	CHECK(T3.find("father") == "Gilles");
+	CHECK(T3.find("mother") == "Florence");
+	Tree T4("Talya");
+	T4.addFather("Talya", "Avraham") 
+	 .addMother("Talya", "Gila");
+	CHECK(T4.relation("Avraham") == "father");
+	CHECK(T4.relation("Gila") == "mother");
+	CHECK(T4.find("father") == "Avraham");
+	CHECK(T4.find("mother") == "Gila");
 }
 
 
 TEST_CASE("Test relation not found"){
-    Tree T ("Yosef"); 
-	T.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel") 
-	 .addFather("Yaakov", "Isaac")
-	 .addMother("Yaakov", "Rivka")
-	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah");
-	CHECK(T.relation("ab") == "unrelated");
-	CHECK(T.relation("ghh") == "unrelated");
-	CHECK(T.relation("klll") == "unrelated");
-	CHECK(T.relation("tyyy") == "unrelated");
-	CHECK(T.relation("ettt") == "unrelated");
-	CHECK(T.relation("poooo") == "unrelated");
-	CHECK(T.relation("gtyy") == "unrelated");
-	CHECK(T.relation("tttt") == "unrelated");
-	CHECK(T.relation("eppp") == "unrelated");
-	CHECK(T.relation("fggg") == "unrelated");
-	CHECK(T.relation("rtyy") == "unrelated");
-	CHECK(T.relation("qppp") == "unrelated");
-	CHECK(T.relation("ceded") == "unrelated");
-	CHECK(T.relation("qqq") == "unrelated");
-	CHECK(T.relation("avrasssham") == "unrelated");
-	CHECK(T.relation("Te rah") == "unrelated");
-	CHECK(T.relation("Noah") == "unrelated");
-	CHECK(T.relation("David") == "unrelated");
-	CHECK(T.relation("Shlomo") == "unrelated");
-	CHECK(T.relation("Yonah") == "unrelated");
-	CHECK(T.relation("Yosef123") == "unrelated");
-	CHECK(T.relation("1issaac") == "unrelated");
-	CHECK(T.relation("avraham") == "unrelated");
-	CHECK(T.relation("Tah") == "unrelated");
+    Tree T ("Naomi"); 
+	T.addFather("Naomi", "Benjamin") 
+	 .addMother("Naomi", "Rivka") 
+	 .addFather("Benjamin", "Henry")
+	 .addMother("Benjamin", "Jacqueline")
+	 .addFather("Henry", "Christophe")
+	 .addMother("Henry", "Julia");
+	CHECK(T.relation("jonny") == "unrelated");
+	CHECK(T.relation("pablo") == "unrelated");
+	CHECK(T.relation("mick") == "unrelated");
+	CHECK(T.relation("ben") == "unrelated");
+	CHECK(T.relation("brad") == "unrelated");
+	CHECK(T.relation("penny") == "unrelated");
+	CHECK(T.relation("ken") == "unrelated");
+	CHECK(T.relation("tom") == "unrelated");
+	CHECK(T.relation("erick") == "unrelated");
+	CHECK(T.relation("chris") == "unrelated");
+	CHECK(T.relation("gavin") == "unrelated");
+	CHECK(T.relation("kyle") == "unrelated");
+	CHECK(T.relation("troy") == "unrelated");
+	CHECK(T.relation("evan") == "unrelated");
+	CHECK(T.relation("paris") == "unrelated");
+	CHECK(T.relation("Baajemin") == "unrelated");
+	CHECK(T.relation("Heeenry") == "unrelated");
+	CHECK(T.relation("Juliiiiia") == "unrelated");
+	CHECK(T.relation("Christiiii") == "unrelated");
+	CHECK(T.relation("Ravaka") == "unrelated");
+	CHECK(T.relation("Naooomi") == "unrelated");
+
+
 } 
 
-TEST_CASE("Test simple addition"){
-    Tree T ("Yosef"); 
-	T.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel") 
-	 .addFather("Yaakov", "Isaac")
-	 .addMother("Yaakov", "Rivka")
-	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah");
+TEST_CASE("Test big family"){
+    Tree T ("Naomi"); 
+	T.addFather("Naomi", "Benjamin") 
+	 .addMother("Naomi", "Rivka") 
+	 .addFather("Benjamin", "Henry")
+	 .addMother("Benjamin", "Jacqueline")
+	 .addFather("Rivka", "Nissim")
+	 .addMother("Rivka", "Gloria")
+	 .addFather("Henry", "Christophe")
+	 .addMother("Henry", "Madeleine")
+	 .addFather("Christophe", "Jacques")
+	 .addMother("Christophe", "Julia");
 	 T.display();
-	CHECK(T.relation("Yaakov") == "father");
-	CHECK(T.relation("Rachel") == "mother");
-	CHECK(T.relation("Isaac") == "grandfather");
-	CHECK(T.relation("Rivka") == "grandmother");
-	CHECK(T.relation("Avraham") == "great-grandfather");
-	CHECK(T.relation("Terah") == "great-great-grandfather");
-	CHECK(T.relation("Yosef") == "me"); 
+	CHECK(T.relation("Benjamin") == "father");
+	CHECK(T.relation("Rivka") == "mother");
+	CHECK(T.relation("Henry") == "grandfather");
+	CHECK(T.relation("Jacqueline") == "grandmother");
+	CHECK(T.relation("Nissim") == "grandfather");
+	CHECK(T.relation("Gloria") == "grandmother");
+	CHECK(T.relation("Christophe") == "great-grandfather");
+	CHECK(T.relation("Madeleine") == "great-grandmother");
+	CHECK(T.relation("Jacques") == "great-great-grandfather");
+	CHECK(T.relation("Julia") == "great-great-grandmother");
+    CHECK(T.relation("Naomi") == "me"); 
 }
 
 TEST_CASE("Test ordered removal"){
@@ -146,15 +167,6 @@ TEST_CASE("Test unordered removal"){
 	CHECK(T.relation("Yosef") == "me");
 }
 
-/*TEST_CASE("Test duplicates"){
-    Tree T ("Yosef"); 
-	T.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel") 
-	 .addFather("Yaakov", "Yaakov")
-	 .addMother("Yaakov", "Rachel");
-	CHECK(T.relation("Yaakov") == "father");
-	CHECK(T.relation("Rachel") == "mother");
-}*/
 
 TEST_CASE("Test unordered removal"){
     Tree T ("Yosef"); 
@@ -187,27 +199,6 @@ TEST_CASE("Test unordered removal"){
 	CHECK(T.relation("Yosef") == "me");
 }
 
-/*TEST_CASE("Test addition after unordered removal"){   ///////////////////////////////////////
-    Tree T ("Yosef"); 
-	T.addFather("Yosef", "Yaakov") 
-	 .addMother("Yosef", "Rachel") 
-	 .addFather("Yaakov", "Isaac")
-	 .addMother("Yaakov", "Rivka")
-	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah");
-	T.remove("Yaakov");
-	T.addFather("Yaakov", "Isaac")
-	 .addMother("Yaakov", "Rivka")
-	 .addFather("Isaac", "Avraham")
-	 .addFather("Avraham", "Terah");
-	CHECK(T.relation("Yaakov") == "unrelated");
-	CHECK(T.relation("Rachel") == "mother");
-	CHECK(T.relation("Isaac") == "unrelated");
-	CHECK(T.relation("Rivka") == "unrelated");
-	CHECK(T.relation("Avraham") == "unrelated");
-	CHECK(T.relation("Terah") == "unrelated");
-	CHECK(T.relation("Yosef") == "me");
-}*/
 
 TEST_CASE("Test find"){
     Tree T ("Yosef"); 
