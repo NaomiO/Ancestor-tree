@@ -78,7 +78,7 @@ string Tree :: relation(string name)
 string Tree :: find(string type)
 {
 	node *temp=findNodeByType(root,type);
-	if(temp==nullptr) throw std::out_of_range("The tree cannot handle the 'uncle' relation");
+	if(temp==nullptr) throw std::out_of_range("This node is not in the tree");
 	return temp->name;
 }
 void Tree :: remove(string name)
